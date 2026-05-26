@@ -1,0 +1,28 @@
+{
+  "name": "TensorFlow 2 Development Environment",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "[python]": {
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+          },
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        }
+      }
+    }
+  },
+  "runArgs": [
+    "--gpus=all"
+  ],
+  "remoteUser": "root",
+  "postCreateCommand": "pip install -r .devcontainer/requirements.txt"
+}
