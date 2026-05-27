@@ -10,6 +10,11 @@
         "charliermarsh.ruff"
       ],
       "settings": {
+        "ruff.interpreter": [
+          "/usr/bin/python3"
+        ],
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "python.languageServer": "Pylance",
         "[python]": {
           "editor.formatOnSave": true,
           "editor.codeActionsOnSave": {
@@ -19,6 +24,9 @@
         }
       }
     }
+  },
+  "remoteEnv": {
+    "PYTHONPATH": "/workspaces/${localWorkspaceFolderBasename}/src"
   },
   "runArgs": [
     "--gpus=all"

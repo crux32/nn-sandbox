@@ -1,0 +1,15 @@
+[workspace]
+authors = ["Ilia Kirianov <crux32@gmail.com>"]
+channels = ["conda-forge"]
+name = "sandbox"
+platforms = ["win-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = ">=3.9,<3.13"
+pip = "*"
+numpy = "*"
+pandas = "*"
+plotly = "*"
