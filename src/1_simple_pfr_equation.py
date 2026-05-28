@@ -5,7 +5,7 @@ from models.kinetic_model1 import KineticModel1
 
 if __name__ == "__main__":
     print("PFR Equation PINN")
-    model = KineticModel1(0.06, 1.0, 0.5)
+    model = KineticModel1(0.06, 0.5, 0.001)
 
     v = np.arange(0.0, 5.0, 0.001)
 

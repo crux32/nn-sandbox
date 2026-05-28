@@ -74,8 +74,6 @@ class KineticModel1(keras.Model):
         dataset = tf.data.Dataset.from_tensor_slices(x_data).batch(batch_size)
 
         for epoch in range(epochs):
-            epoch_loss = 0.0
-            num_batches = 0
             for x_batch in dataset:
                 with tf.GradientTape() as nn_tape:
                     with tf.GradientTape() as model_tape:
@@ -96,16 +94,16 @@ class KineticModel1(keras.Model):
                     # Total loss
                     loss = loss_model + loss_boundary
 
+                    self.loss_metric.update_state(loss)
+
                 # Calculating the gradients
                 gradients = nn_tape.gradient(loss, self.trainable_variables)
 
                 # Applying gradients
                 self.optimizer.apply_gradients(zip(gradients, self.trainable_variables))
 
-                # Add to total epoch loss
-                epoch_loss += float(loss)
-                num_batches += 1
+            epoch_loss = self.loss_metric.result().numpy()
             Logger.log(
                 "info",
-                f"Epoch {epoch + 1}/{epochs}, Loss: {epoch_loss / num_batches:.10f}, k: {self.k.numpy():.6f}",
+                f"Epoch {epoch + 1}/{epochs}, Loss: {epoch_loss:.10f}, k: {self.k.numpy():.6f}",
             )
